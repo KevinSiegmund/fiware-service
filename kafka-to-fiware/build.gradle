@@ -1,0 +1,50 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+
+
+group = 'de.fraunhofer.iosb.ast' 
+version = '0.0.7-SNAPSHOT'
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security:2.3.4.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.3.4.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services:2.3.4.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.4.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-json:2.3.0.RELEASE'
+    
+   
+    implementation 'org.springframework.kafka:spring-kafka:2.6.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
+	
+	implementation 'com.fasterxml.jackson.module:jackson-modules-java8:2.11.3'
+	implementation project(':time-series-api-dto')
+	
+	implementation 'com.google.guava:guava:29.0-jre'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+	
+	compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+	
+	testImplementation 'org.mockito:mockito-core:3.4.6'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter:5.6.2'
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+bootJar {
+    exclude("application.yml")
+} 

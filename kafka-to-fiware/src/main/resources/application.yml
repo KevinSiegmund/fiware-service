@@ -1,0 +1,38 @@
+server:
+   port: 8082
+
+kafka:
+   connection:
+          topicname: equidistant-time-series-export-fiware
+
+service:
+      url:
+   
+        postDto: "http://localhost:1026/v2/entities"
+    
+              
+logging:
+   level:
+      org:
+         springframework:
+            web      : DEBUG
+            security : DEBUG
+            kafka    : DEBUG
+            jdbc: TRACE
+         hibernate:
+            SQL  : DEBUG
+      de:
+         fraunhofer: DEBUG
+
+spring:
+   kafka:
+      consumer:
+         bootstrap-servers: localhost:9092
+         group-id: fiware
+         auto-offset-reset: earliest
+         enable-auto-commit: false
+         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+         acks: all
+      listener:
+         ack-mode: manual-immediate
